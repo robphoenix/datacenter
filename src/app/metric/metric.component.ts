@@ -6,10 +6,6 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./metric.component.css']
 })
 export class MetricComponent implements OnInit {
-  @Input()
-  title = '';
-  @Input()
-  description = '';
   private _value = 0;
   private _max = 100;
 
