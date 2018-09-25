@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   // tslint:disable-next-line:component-selector
   selector: '[app-nodes-row]',
   templateUrl: './nodes-row.component.html',
-  styleUrls: ['./nodes-row.component.css']
+  styleUrls: ['./nodes-row.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NodesRowComponent {
   @Input()
