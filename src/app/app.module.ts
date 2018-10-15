@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MetricComponent } from './metric/metric.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { NodesDetailComponent } from './nodes-detail/nodes-detail.component';
 import { NodesRowComponent } from './nodes-row/nodes-row.component';
 import { NodesComponent } from './nodes/nodes.component';
 
@@ -15,11 +16,13 @@ import { NodesComponent } from './nodes/nodes.component';
     DashboardComponent,
     MetricComponent,
     NodesComponent,
-    NodesRowComponent
+    NodesRowComponent,
+    NodesDetailComponent
   ],
   imports: [BrowserModule, NgbModule.forRoot()],
   providers: [],
   bootstrap: [AppComponent],
-  schemas: [NO_ERRORS_SCHEMA]
+  schemas: [NO_ERRORS_SCHEMA],
+  entryComponents: [NodesDetailComponent]
 })
 export class AppModule {}
