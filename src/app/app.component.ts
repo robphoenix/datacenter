@@ -1,4 +1,11 @@
-import { Component, ViewChild } from '@angular/core';
+import {
+  Component,
+  ComponentFactoryResolver,
+  ComponentRef,
+  ViewChild,
+  ViewContainerRef
+} from '@angular/core';
+import { AlertComponent } from './alert/alert.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 @Component({
@@ -7,10 +14,37 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  alertRef: ComponentRef<AlertComponent>;
   @ViewChild(DashboardComponent)
   dashboard: DashboardComponent;
+  @ViewChild('alertBox', { read: ViewContainerRef })
+  alertBox: ViewContainerRef;
 
   title = 'app';
+
+  constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
+
+  alert(date) {
+    if (!this.alertRef) {
+      const alertComponent = this.componentFactoryResolver.resolveComponentFactory(
+        AlertComponent
+      );
+      this.alertRef = this.alertBox.createComponent(alertComponent);
+    }
+    this.alertRef.instance.date = date;
+    this.alertRef.changeDetectorRef.detectChanges();
+
+    setTimeout(() => {
+      this.destroyAlert();
+    }, 5000);
+  }
+
+  destroyAlert() {
+    if (this.alertRef) {
+      this.alertRef.destroy();
+      delete this.alertRef;
+    }
+  }
 
   refresh() {
     this.dashboard.generateData();
